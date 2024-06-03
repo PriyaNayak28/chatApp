@@ -1,0 +1,10 @@
+node_modules
+# Ignore the aws folder
+
+
+# Ignore the .env file
+.env
+
+package-lock.json
+
+package.json

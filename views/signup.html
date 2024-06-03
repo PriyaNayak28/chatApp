@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, green, #5e9666);
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        .form {
+            font-size: x-large;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+            background: linear-gradient(90deg, green, #5e9666);
+            color: aliceblue;
+        }
+
+        .header {
+            color: white;
+            text-align: center;
+            text-shadow: #C7C5F4;
+            font-weight: bolder;
+
+        }
+
+        .submit {
+            background: #fff;
+            font-size: 14px;
+            margin-top: 30px;
+            padding: 16px 20px;
+            border-radius: 26px;
+            border: 1px solid #D4D3E8;
+            text-transform: uppercase;
+            font-weight: 700;
+            align-items: center;
+            width: 100%;
+            color: green;
+            box-shadow: 0px 2px 2px #5C5696;
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 200px;
+            color: aliceblue;
+        }
+
+        .link {
+            color: white;
+
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="header"><img src="https://brandeps.com/logo-download/W/WhatsApp-logo-vector-02.svg" width="40px"
+            height="35px">weChat</h1>
+    <div class="form">
+        <form onsubmit="signup(event)">
+            <label for="name">Enter Name:</label><br>
+            <input type="text" name="name" id="name" autocomplete="off" required /><br>
+            <label for="email">Enter Email:</label><br>
+            <input type="email" name="email" id="email" autocomplete="off" required /><br>
+            <label for="phone">Enter Phone No:</label><br>
+            <input type="tel" name="phone" id="phone" autocomplete="off" required /><br>
+            <label for="password">Enter Password:</label><br>
+            <input type="password" name="password" id="password" autocomplete="off" required /><br>
+            <input class="submit" type="submit" id="btn" value="submit"><br>
+        </form>
+    </div>
+    <div class='links'>
+
+        <a class="link" href='./login.html'>Existing User- Login</a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
+
+    <script src="./signup.js"></script>
+</body>
+
+</html>

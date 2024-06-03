@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GroupChat page
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: linear-gradient(90deg, green, #5e9666) 0% 0% / 100% 50%, linear-gradient(90deg, rgb(226, 218, 218), rgb(215, 206, 206)) 0% 100% / 100% 50%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            border-radius: 5%;
+        }
+
+        header {
+            background-color: green;
+            color: rgb(2, 8, 0);
+        }
+
+        h2 {
+            font-weight: bold;
+        }
+
+        .chats {
+            color: white;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        #logout {
+            float: right;
+            background-image: url('../images/logout.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            border-radius: 10px;
+            margin-top: 3px;
+            padding: 5px;
+            width: 45px;
+            height: 45px;
+        }
+
+        #createGroup2 {
+            margin-top: 2px;
+            text-align: center;
+        }
+
+        #myGroups {
+            color: rgba(255, 255, 255, 0.738);
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #logoh3 {
+            background-image: url("../images/memberslogo.png");
+            background-repeat: no-repeat;
+            background-size: contain;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 10px;
+            padding: 5px;
+        }
+
+        hr {
+            background-color: rgb(176, 243, 243);
+        }
+
+        .flexible {
+            display: grid;
+        }
+
+        #newGroup {
+            background-color: rgba(47, 220, 82, 0.819);
+            color: white;
+            padding: 10px;
+            float: right;
+            border-radius: 20px;
+        }
+
+        #newGroup:hover {
+            background-color: rgb(30, 255, 0);
+        }
+
+        #manage {
+            margin-top: 7px;
+            background-image: url("data:image/png;base64,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");
+            background-repeat: no-repeat;
+            background-size: contain;
+            float: right;
+            width: 45px;
+            height: 45px;
+        }
+
+        main {
+            display: flex;
+            position: sticky;
+            bottom: 0;
+            margin-top: 500px;
+            width: 100%;
+            height: 2.5rem;
+        }
+
+        input[type="submit"] {
+            margin-left: -50px;
+            height: 20px;
+            width: 50px;
+        }
+
+        #allmessages li {
+            background-color: rgb(105, 96, 52);
+            color: rgb(243, 238, 238);
+            text-align: left;
+            height: 50px;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow-y: auto;
+        }
+
+        #allmessages {
+            display: flex;
+            flex-direction: column;
+        }
+
+        #showMembers {
+            width: 100%;
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+        }
+
+        #back {
+            width: 100%;
+            text-align: center;
+        }
+
+        .message {
+            padding: 5px;
+            margin: 5px;
+            border-radius: 5px;
+            max-width: 70%;
+            word-wrap: break-word;
+        }
+
+        .your-message {
+
+            align-self: flex-end;
+            background-color: lightgreen;
+        }
+
+
+        .other-message {
+            align-self: flex-start;
+            background-color: wheat;
+        }
+
+        #head {
+            align-items: center;
+            margin-left: 44%;
+            color: white;
+        }
+
+        .content {
+
+            width: 100%;
+            height: 80vh;
+            background-image: url('https://i.pinimg.com/564x/8c/98/99/8c98994518b575bfd8c949e91d20548b.jpg');
+            background-color: aliceblue;
+            border-style: solid;
+            border-color: aliceblue;
+
+            overflow-y: auto;
+        }
+
+        #chat {
+            width: 97%;
+            display: flex;
+            border-radius: 5%;
+            border-style: solid;
+            border-color: green;
+        }
+
+        #inputmessage {
+            display: flex;
+            margin-top: auto;
+
+        }
+
+        #send {
+
+            background-image: url('https://play-lh.googleusercontent.com/F5a3I0qOcUGHq6yYuEvpHGfAklwW3yAUyEWqgS-05k0QYwIogSZSSC08VDrAilKGWMs');
+            background-repeat: no-repeat;
+            background-size: contain;
+            float: right;
+            width: 45px;
+            height: 45px;
+
+        }
+
+        #groupname {
+            color: white;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-align: Center;
+            font-size: larger;
+            font-weight: bold;
+        }
+
+        #username {
+            text-align: center;
+            font-weight: bold;
+            color: blue;
+            font-size: small;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="groupname">
+        Chatbox
+        <button id="manage" class="btn btn-success btn-lg"></button><br><br>
+    </div>
+    <div class="content">
+        <div id="showMembers" style="display: none;">
+            <h3 id="logoh3">Members</h3>
+            <ol id="alreadyMember"></ol>
+            <hr style="background-color: black;">
+            <h3 id="logoh3">Add Members</h3>
+            <hr style="background-color: black;">
+            <ol id="members"></ol>
+            <button id="back" class="btn btn-primary btn-sm">back</button>
+
+        </div>
+        <div id="allmessages"></div>
+    </div>
+    <div id="inputmessage">
+        <input type="text" id="chat" class="form-control" placeholder="Message">
+        <button id="send" class="btn btn-light btn-lg"></button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
+    <script src="./message.js"></script>
+
+
+</body>
+
+</html>
