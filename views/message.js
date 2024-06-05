@@ -236,7 +236,7 @@ managebtn.onclick = async function manageMembers(e) {
                         }
                         else {
                             const child = `<li id="${users[membersArray[i] - 1].id}">${users[membersArray[i] - 1].name}
-                   
+
                         </li><br>`
                             members.innerHTML += child
                         }
@@ -334,3 +334,4 @@ async function addAdmin(id) {
     }
 
 }
+

@@ -1,9 +1,9 @@
 const messages = require('../models/groupchat')
 require('dotenv').config();
 const groupsdb = require('../models/group')
-const User = require('../models/users');
+const User = require('../models/user');
 
-const { where } = require("sequelize");
+
 const usergroupdb = require('../models/groupmember');
 
 
@@ -11,7 +11,6 @@ exports.addgroup = async (req, res, next) => {
     try {
 
         const gname = req.body.gname;
-        console.log(gname)
         const data = await groupsdb.create({
             groupName: gname
         })

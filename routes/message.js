@@ -1,6 +1,6 @@
 const express = require('express')
 const route = express.Router();
-const message = require("../controller/messages")
+const message = require("../controller/message")
 const userauthenticate = require('../middleware/auth')
 
 route.post("/add-message", userauthenticate.authenticate, message.addMessage)

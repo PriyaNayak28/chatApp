@@ -1,6 +1,5 @@
 const logout = document.getElementById("logout");
 
-
 //logout button
 logout.addEventListener("click", async () => {
     if (confirm("do you want to log out?")) {
@@ -11,8 +10,6 @@ logout.addEventListener("click", async () => {
 
 
 })
-
-
 
 document.getElementById('newgroup').onclick = async (e) => {
     e.preventDefault();
@@ -109,3 +106,5 @@ async function insideGroup(id) {
     }
 
 }
+
+
