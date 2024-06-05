@@ -1,8 +1,8 @@
+
 let sendbtn = document.getElementById("send")
 let message = document.getElementById("chat")
 let managebtn = document.getElementById("manage")
 const parent = document.getElementById("allmessages")
-
 
 sendbtn.onclick = async (e) => {
     try {
@@ -16,9 +16,8 @@ sendbtn.onclick = async (e) => {
         const response = await axios.post("http://localhost:5000/messages/add-message", obj, { headers: { 'Authorization': token } })
         console.log(response.data.message.userName,)
         showChatOnScreen(response.data.message.id, response.data.message.userName, response.data.message.chats)
-
     } catch (e) {
-        console.log("error in snding message", e)
+        console.log("error in sending message", e)
     }
 }
 
@@ -57,8 +56,16 @@ async function showChatOnScreen(id, name, postmsg) {
     }
 }
 
+// WebSocket connection
+const socket = new WebSocket('ws://localhost:5000');
 
+// Listen for messages from the server
+socket.addEventListener('message', (event) => {
+    console.log('Message from server:', event.data);
+    // Handle incoming messages here, update UI, etc.
+});
 
+// window reload code
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -79,8 +86,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
         const showData = response.data.allData;
 
-
-
         //  console.log(showData[1].userName)
         if (showData.length <= 10) {
             for (let i = 0; i < 10; i++) {
@@ -94,20 +99,13 @@ window.addEventListener("DOMContentLoaded", async () => {
                 showChatOnScreen(showData[i].id, showData[i].userName)
             }
 
-
         }
 
     } catch (err) {
         console.log("dom loading error in messages", err)
     }
 
-
 })
-
-
-
-
-
 
 
 managebtn.onclick = async function manageMembers(e) {
@@ -201,12 +199,7 @@ managebtn.onclick = async function manageMembers(e) {
                         parentUser.innerHTML = parentUser.innerHTML + child
                     }
                 }
-                //   else{
-                //       for(let i=0;i<addMembersArray.length;i++){
-                //           const child=`<li ${users[addMembersArray[i]-1].id}>${users[addMembersArray[i]-1].name}</li><br>`
-                //           parentUser.innerHTML+=child 
-                //       }
-                //   }
+
             }
             //members
             for (let i = 0; i < adminAccess.length; i++) {
@@ -224,8 +217,6 @@ managebtn.onclick = async function manageMembers(e) {
                         }
                     }
                 }
-
-
             }
             for (let i = 0; i < adminReject.length; i++) {
                 if (adminReject[i] === decodeToken.userId) {
@@ -243,14 +234,7 @@ managebtn.onclick = async function manageMembers(e) {
 
                     }
                 }
-                //   else{
-                //      for(let i=0;i<membersArray.length;i++){
-                //          const child=`<li ${users[membersArray[i]-1].id}>${users[membersArray[i]-1].name}</li><br>`
-                //          members.innerHTML+=child 
-                //     }
-                //  }
             }
-
         }
     }
     catch (e) {
@@ -304,6 +288,7 @@ async function removeMember(id) {
     }
 
 }
+
 async function addAdmin(id) {
     try {
 
@@ -327,11 +312,8 @@ async function addAdmin(id) {
         } else {
             window.location.reload()
         }
-
-
     } catch (e) {
         console.log("error in remove member dom")
     }
 
 }
-

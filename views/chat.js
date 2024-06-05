@@ -1,3 +1,4 @@
+
 const logout = document.getElementById("logout");
 
 //logout button
@@ -7,8 +8,6 @@ logout.addEventListener("click", async () => {
     } else {
         window.location.reload();
     }
-
-
 })
 
 document.getElementById('newgroup').onclick = async (e) => {
@@ -60,6 +59,14 @@ window.addEventListener("DOMContentLoaded", async (e) => {
     }
 })
 
+// WebSocket connection
+const socket = new WebSocket('ws://localhost:5000');
+
+// Listen for messages from the server
+socket.addEventListener('message', (event) => {
+    console.log('Message from server:', event.data);
+    // Handle incoming messages here, update UI, etc.
+});
 
 //to get all the groupname
 async function getAllGroupNames(addGroup) {
@@ -87,24 +94,13 @@ async function getAllGroupNames(addGroup) {
     }
 }
 
-
 //once you are inside a group
 async function insideGroup(id) {
-
     try {
-
         localStorage.setItem("groupId", id)
-
-        //location wil lead to messages.html page
-        // window.location.href="./message.html"
         var div = document.getElementById('chatbox');
         div.style.display = 'block';
-
-
     } catch (e) {
         console.log("error in inside group FE", err)
     }
-
 }
-
-
