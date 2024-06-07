@@ -1,7 +1,7 @@
-const messages = require('../models/groupchat')
+const messages = require('../models/group-chat')
 require('dotenv').config();
 const users = require('../models/user')
-const usergrpdb = require('../models/groupmember')
+const usergrpdb = require('../models/group-member')
 
 exports.addMessage = async (req, res) => {
     try {

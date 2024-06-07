@@ -1,27 +1,30 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <style>
         body {
             height: 100%;
-            width: 100%;
             background: linear-gradient(90deg, green, #5e9666);
             font-family: Verdana, Geneva, Tahoma, sans-serif;
-        }
-
-        .form {
-            font-size: x-large;
-            font-weight: bold;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 500px;
-            background: linear-gradient(90deg, green, #5e9666);
-            color: aliceblue;
+        }
+
+        .form-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .header {
@@ -29,115 +32,209 @@
             text-align: center;
             text-shadow: #C7C5F4;
             font-weight: bold;
-
+            margin-bottom: 1rem;
         }
 
-        .links {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 200px;
-            color: aliceblue;
-        }
-
-        .link {
-            color: white;
-            margin-left: 2%;
-        }
-
-        .submit {
-            background: #fff;
-            font-size: 14px;
-            margin-top: 30px;
-            padding: 16px 20px;
-            border-radius: 26px;
-            border: 1px solid #D4D3E8;
-            text-transform: uppercase;
-            font-weight: 700;
-
-            align-items: center;
-            width: 100%;
-            color: green;
-            box-shadow: 0px 2px 2px #5C5696;
-            cursor: pointer;
-            transition: .2s;
-        }
-
+        .submit,
         .password {
             background: #fff;
             font-size: 14px;
-            margin-top: 10px;
-            padding: 16px 20px;
+            padding: 0.75rem 1rem;
             border-radius: 26px;
             border: 1px solid #D4D3E8;
             text-transform: uppercase;
             font-weight: 700;
-            display: flex;
-            align-items: center;
-            width: 10%;
             color: green;
             box-shadow: 0px 2px 2px #5C5696;
             cursor: pointer;
             transition: .2s;
+            width: 100%;
+            margin-top: 1rem;
+        }
 
+        .links {
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .link {
+            color: green;
+            font-weight: bold;
+            text-decoration: none;
+            margin-top: 0.5rem;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1rem;
+            }
+
+            .header {
+                font-size: 1.25rem;
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1 class="header"><img src="https://brandeps.com/logo-download/W/WhatsApp-logo-vector-02.svg" width="40px"
-            height="35px">weChat</h1>
-    <div class="form">
-        <form id="form" onsubmit="login(event)">
-            <label for="email">Enter Email:</label><br>
-            <input name="email" type="text" id="email" autocomplete="email"><br>
-            <label for="password">Enter Password:</label><br>
-            <input name="password" type="password" id="password" autocomplete="off"><br>
-            <input class="submit" type="submit" id="btn" value="submit"><br>
-        </form>
-    </div>
-    <div class='links'>
-
-        <button class="password" onclick="forgotpassword()"> Forgot password</button><br>
-        <a href='./signup.html' class="link">New User- Sign Up</a>
+    <div class="container">
+        <h1 class="header"><img src="https://brandeps.com/logo-download/W/WhatsApp-logo-vector-02.svg" width="40px"
+                height="35px">weChat</h1>
+        <div class="form-container">
+            <form id="form" onsubmit="login(event)">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Enter Email:</label>
+                    <input name="email" type="text" id="email" class="form-control" autocomplete="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Enter Password:</label>
+                    <input name="password" type="password" id="password" class="form-control" autocomplete="off">
+                </div>
+                <input class="submit" type="submit" id="btn" value="submit">
+            </form>
+            <div class="links">
+                <button class="password" onclick="forgotpassword()">Forgot password</button>
+                <a href='./signup.html' class="link">New User - Sign Up</a>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
+    <script src="./login.js"></script>
+</body>
 
-    <script>
-        function login(event) {
-            event.preventDefault();
-
-            const email = event.target.email.value;
-            const password = event.target.password.value;
+</html> -->
 
 
-            const loginDetails = {
-                email,
-                password
-            }
-            axios.post("http://localhost:5000/user/login", loginDetails)
-                .then((response) => {
-                    console.log(response)
-                    if (response.status === 200) {
-                        alert(response.data.message)
-                        localStorage.setItem('token', response.data.token)
-                        window.location.href = "./chat.html"
-                    } else {
-                        throw new Error(response.data.message)
-                    }
-                })
-                .catch((err) => {
-                    console.log(err)
-                    document.body.innerHTML += `<div style="color: red;">${err}</div>`;
-                })
+<!DOCTYPE html>
+<html lang="en">
 
-        }
-        function forgotpassword() {
-            window.location.href = "./password.html"
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SpeakEasy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            height: 100%;
+            background: #F8F9FA;
+            font-family: 'Roboto', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
         }
 
-    </script>
+        .container {
+            max-width: 400px;
+            width: 100%;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header {
+            color: #343A40;
+            margin-bottom: 2rem;
+        }
+
+        .header img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        label {
+            color: #343A40;
+            margin-bottom: 0.5rem;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #6C757D;
+            border-radius: 4px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .submit,
+        .password {
+            background: #007BFF;
+            color: white;
+            font-size: 14px;
+            padding: 0.75rem;
+            border-radius: 4px;
+            border: none;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit:hover,
+        .password:hover {
+            background: #0056b3;
+        }
+
+        .links {
+            margin-top: 1rem;
+        }
+
+        .link {
+            color: #007BFF;
+            text-decoration: none;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="header">
+            <img src="https://brandeps.com/logo-download/W/WhatsApp-logo-vector-02.svg" width="40px" height="35px">
+            SpeakEasy
+        </h1>
+        <div class="form-container">
+            <form id="form" onsubmit="login(event)">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Enter Email:</label>
+                    <input name="email" type="text" id="email" class="form-control" autocomplete="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Enter Password:</label>
+                    <input name="password" type="password" id="password" class="form-control" autocomplete="off">
+                </div>
+                <input class="submit" type="submit" id="btn" value="Submit">
+            </form>
+            <div class="links">
+                <button class="password" onclick="forgotpassword()">Forgot password</button>
+                <a href='./signup.html' class="link">New User - Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js"></script>
+    <script src="./login.js"></script>
 </body>
 
 </html>

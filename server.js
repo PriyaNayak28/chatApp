@@ -6,8 +6,8 @@ const cron = require("node-cron");
 const sequelize = require('./util/database');
 const User = require('./models/user.js');
 const Group = require('./models/group.js');
-const GroupChat = require('./models/groupchat.js');
-const GroupMember = require('./models/groupmember.js');
+const GroupChat = require('./models/group-chat.js');
+const GroupMember = require('./models/group-member.js');
 const Archive = require('./models/archive.js');
 const cors = require('cors');
 const dotenv = require('dotenv');
@@ -28,8 +28,8 @@ const userRoutes = require('./routes/user');
 const groupRoutes = require('./routes/group');
 const messageRoutes = require('./routes/message');
 
-app.use(bodyParser.json({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json({ extended: false }));
 
 app.use('/user', userRoutes);
 app.use('/group', groupRoutes);
@@ -92,3 +92,26 @@ wss.on('connection', (ws) => {
         console.log('Client disconnected');
     });
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
